@@ -1,11 +1,12 @@
 #!groovy
 
-@Library('slackNotifications-shared-library@master')
+@Library('slackNotifications-shared-library@master') _
 
-pipeline {
+pipeline
+{
     agent any
     tools {
-        maven 'M2'
+        maven 'M3'
         jdk 'JDK'
         nodejs 'NODEJS'
     }
