@@ -5,7 +5,7 @@
           "targetServers": [
               {
                 "name" : "cicd-target-server",
-                "host" : "mamillarevathi-eval-prod.apigee.net",
+                "host" : "marcelodevopsgarcia-eval-prod.apigee.net",
                 "isEnabled" : true,
                 "port" : 80
               }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-current_deployment_info=$(curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/onlineman477-eval/apis/HR-API/deployments") 
+current_deployment_info=$(curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/marcelodevopsgarcia-eval/apis/HR-API/deployments") 
 
 rev_num=$(jq -r .environment[0].revision[0].name <<< "${current_deployment_info}" ) 
 env_name=$(jq -r .environment[0].name <<< "${current_deployment_info}" ) 
