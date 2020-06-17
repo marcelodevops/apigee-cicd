@@ -24,7 +24,6 @@
         <Policy>REP-Checking-JSON-Payload</Policy>
         <Policy>RF-Invalid-UserID</Policy>
         <Policy>RF-Missing-Phone-Number</Policy>
-        <Policy>Response-Cache-CICD</Policy>
         <Policy>Verify-JWT</Policy>
     </Policies>
     <ProxyEndpoints>
