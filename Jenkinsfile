@@ -22,15 +22,15 @@ pipeline
             /* groovylint-disable-next-line SpaceAfterClosingBrace */
             steps {
                 sendNotifications 'STARTED'
-                bat 'npm -v'
-                bat 'mvn -v'
+                sh 'npm -v'
+                sh 'mvn -v'
                 echo "$apigeeUsername"
                 echo "Stable Revision: ${env.stable_revision}"
         }}
         stage('Policy-Code Analysis') {
             steps {
-                bat 'npm install -g apigeelint'
-                bat 'apigeelint -s HR-API/apiproxy/ -f codeframe.js'
+                sh 'npm install -g apigeelint'
+                sh 'apigeelint -s HR-API/apiproxy/ -f codeframe.js'
             }
         }
         stage('Unit-Test-With-Coverage') {
@@ -38,13 +38,13 @@ pipeline
                 script {
                     /* groovylint-disable-next-line NestedBlockDepth */
                     try {
-                        bat 'npm install'
-                        bat 'npm test test/unit/*.js'
-                        bat 'npm run coverage test/unit/*.js'
+                        sh 'npm install'
+                        sh 'npm test test/unit/*.js'
+                        sh 'npm run coverage test/unit/*.js'
                     } catch (e) {
                         throw e
                     } finally {
-                        bat "cd coverage && cp cobertura-coverage.xml $WORKSPACE"
+                        sh "cd coverage && cp cobertura-coverage.xml $WORKSPACE"
                         step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
                     }
                 }
@@ -62,8 +62,8 @@ pipeline
                  //deploy using maven plugin
 
                  // deploy only proxy and deploy both proxy and config based on edge.js update
-                //bat "sh && sh deploy.sh"
-                bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
+                //sh "sh && sh deploy.sh"
+                sh "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
             }
         }
         stage('Integration Tests') {
@@ -72,17 +72,17 @@ pipeline
                     try {
                         // using credentials.sh to get the client_id and secret of the app..
                         // thought of using them in cucumber oauth feature
-                        // bat "sh && sh credentials.sh"
-                        bat "cd $WORKSPACE/test/integration && npm install"
-                        bat "cd $WORKSPACE/test/integration && npm test"
+                        // sh "sh && sh credentials.sh"
+                        sh "cd $WORKSPACE/test/integration && npm install"
+                        sh "cd $WORKSPACE/test/integration && npm test"
                     } catch (e) {
                         //if tests fail, I have used an shell script which has 3 APIs to undeploy, 
                         //delete current revision & deploy previous stable revision
-                        bat "sh && sh undeploy.sh"
+                        sh "sh && sh undeploy.sh"
                         throw e
                     } finally {
                         // generate cucumber reports in both Test Pass/Fail scenario
-                        bat "cd $WORKSPACE/test/integration && cp reports.json $WORKSPACE"
+                        sh "cd $WORKSPACE/test/integration && cp reports.json $WORKSPACE"
                         /* groovylint-disable-next-line SpaceAroundMapEntryColon */
                         cucumber fileIncludePattern: 'reports.json'
                         /* groovylint-disable-next-line SpaceAroundMapEntryColon */

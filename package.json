@@ -10,14 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "JSONPath": "^0",
+    "apickli": "latest",
+    "apigeelint": "^0.4.3",
     "is-my-json-valid": "^2",
     "path": "^0",
     "prettyjson": "^1",
     "request": "^2",
     "swagger-tools": "^0",
     "xmldom": "^0",
-    "xpath.js": "^1",
-    "apickli": "latest"
+    "xpath.js": "^1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -33,5 +34,17 @@
     "cucumber-html-reporter": "^4",
     "fs-extra": "^7",
     "argv": "^0"
-  }
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcelodevops/apigee-cicd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcelodevops/apigee-cicd/issues"
+  },
+  "homepage": "https://github.com/marcelodevops/apigee-cicd#readme"
 }
