@@ -13,31 +13,34 @@ pipeline
 
     environment {
         //getting the current stable/deployed revision...this is used in undeloy.sh in case of failure...
-        stable_revision = sh(script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/marcelodevopsgarcia-eval/apis/HR-API/deployments" | jq -r ".environment[0].revision[0].name"', returnStdout: true).trim()
+        stable_revision = sh(
+            script: 'curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/marcelodevopsgarcia-eval/apis/HR-API/deployments" | jq -r ".environment[0].revision[0].name"', returnStdout: true).trim()
     }
 
     stages {
         stage('Initial-Checks') {
+            /* groovylint-disable-next-line SpaceAfterClosingBrace */
             steps {
                 sendNotifications 'STARTED'
-                bat "npm -v"
-                bat "mvn -v"
+                bat 'npm -v'
+                bat 'mvn -v'
                 echo "$apigeeUsername"
                 echo "Stable Revision: ${env.stable_revision}"
-        }}  
+        }}
         stage('Policy-Code Analysis') {
             steps {
-                bat "npm install -g apigeelint"
-                bat "apigeelint -s HR-API/apiproxy/ -f codeframe.js"
+                bat 'npm install -g apigeelint'
+                bat 'apigeelint -s HR-API/apiproxy/ -f codeframe.js'
             }
         }
         stage('Unit-Test-With-Coverage') {
             steps {
                 script {
+                    /* groovylint-disable-next-line NestedBlockDepth */
                     try {
-                        bat "npm install"
-                        bat "npm test test/unit/*.js"
-                        bat "npm run coverage test/unit/*.js"
+                        bat 'npm install'
+                        bat 'npm test test/unit/*.js'
+                        bat 'npm run coverage test/unit/*.js'
                     } catch (e) {
                         throw e
                     } finally {
@@ -57,7 +60,7 @@ pipeline
         stage('Deploy to Production') {
             steps {
                  //deploy using maven plugin
-                 
+
                  // deploy only proxy and deploy both proxy and config based on edge.js update
                 //bat "sh && sh deploy.sh"
                 bat "mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
@@ -73,13 +76,16 @@ pipeline
                         bat "cd $WORKSPACE/test/integration && npm install"
                         bat "cd $WORKSPACE/test/integration && npm test"
                     } catch (e) {
-                        //if tests fail, I have used an shell script which has 3 APIs to undeploy, delete current revision & deploy previous stable revision
+                        //if tests fail, I have used an shell script which has 3 APIs to undeploy, 
+                        //delete current revision & deploy previous stable revision
                         bat "sh && sh undeploy.sh"
                         throw e
                     } finally {
                         // generate cucumber reports in both Test Pass/Fail scenario
                         bat "cd $WORKSPACE/test/integration && cp reports.json $WORKSPACE"
+                        /* groovylint-disable-next-line SpaceAroundMapEntryColon */
                         cucumber fileIncludePattern: 'reports.json'
+                        /* groovylint-disable-next-line SpaceAroundMapEntryColon */
                         build job: 'cucumber-report'
                     }
                 }
