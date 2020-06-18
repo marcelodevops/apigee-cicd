@@ -44,8 +44,8 @@ pipeline
                     } catch (e) {
                         throw e
                     } finally {
-                        //sh "cd coverage && cp cobertura-coverage.xml $WORKSPACE"
-                        //step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
+                        sh "cd coverage && cp cobertura-coverage.xml $WORKSPACE"
+                        step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml'])
                     }
                 }
             }
