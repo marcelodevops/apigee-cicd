@@ -3,11 +3,11 @@
     <Basepaths>/hr</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1562173347052</CreatedAt>
-    <CreatedBy>onlineman477@gmail.com</CreatedBy>
+    <CreatedBy>marcelodevopsgarcia@gmail.com</CreatedBy>
     <Description>SILENTSHADOW$ git: e148adec SilentShadow</Description>
     <DisplayName>hr-api</DisplayName>
     <LastModifiedAt>1562173347052</LastModifiedAt>
-    <LastModifiedBy>onlineman477@gmail.com</LastModifiedBy>
+    <LastModifiedBy>marcelodevopsgarcia@gmail.com</LastModifiedBy>
     <ManifestVersion>SHA-512:63957310ff6fbad21b6689d33034fddee98f6ab9b3839cb9e76d7d210e64759d5dc76f7ba6fe9365cd68b8006b19d57d29c5d627799b4e089a61618fbab2aac5</ManifestVersion>
     <Policies>
         <Policy>AM-Setting-New-Payload</Policy>

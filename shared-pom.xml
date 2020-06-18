@@ -158,7 +158,7 @@
                 <apigee.profile>prod</apigee.profile>
                 <apigee.hosturl>https://api.enterprise.apigee.com</apigee.hosturl>
                 <apigee.apiversion>v1</apigee.apiversion>
-                <apigee.org>onlineman477-eval</apigee.org>
+                <apigee.org>marcelodevopsgarcia-eval</apigee.org>
                 <apigee.env>prod</apigee.env>
                 <apigee.username>${apigeeUsername}</apigee.username>
                 <apigee.password>${apigeePassword}</apigee.password>
