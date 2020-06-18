@@ -29,7 +29,7 @@ pipeline
         }}
         stage('Policy-Code Analysis') {
             steps {
-                sh 'npm install -g apigeelint'
+                sh 'sudo npm install -g apigeelint'
                 sh 'apigeelint -s HR-API/apiproxy/ -f codeframe.js'
             }
         }
