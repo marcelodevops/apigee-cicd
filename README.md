@@ -33,13 +33,13 @@ On every pipeline execution, the code goes through the following steps:
 
 # Demo Guide
 1. HR API - A simple API to perform CRUD operations on employee records. For backend I am using Firestore DB.
-2. Download `HR-API.zip` proxy bundle from this repo/bundles & deploy to `test` env or create an sample API Proxy.
+2. Download `hr-api.zip` proxy bundle from this repo/bundles & deploy to `test` env or create an sample API Proxy.
 3. Download `CiCd-Security.zip` proxy bundle from this repo/bundles & deploy to both `prod` & `test` environments.
-4. Fork this repo & create a directory structure as per `HR-API` directory & place your `apiproxy` folder.
+4. Fork this repo & create a directory structure as per `hr-api` directory & place your `apiproxy` folder.
 5. I am using an Parameterzied Build to pass the Apigee `username`, `password` and `base64encoded` string.
 6. `ApigeeLint` will go through the `apiproxy` folder,
 ```node
-apigeelint -s HR-API/apiproxy/ -f codeframe.js
+apigeelint -s hr-api/apiproxy/ -f codeframe.js
 ```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61175192-bfb71600-a5c8-11e9-823a-7dabf01bc4af.jpg?raw=true" alt="Apigeelint"/>
@@ -67,7 +67,7 @@ step([$class: 'CoberturaPublisher', coberturaReportFile: 'cobertura-coverage.xml
   
 9. Build & Deploy happens through Apigee Maven Plugin (update `pom` and `edge.json` files with appropiate details),
 ```maven
-mvn -f HR-API/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update
+mvn -f hr-api/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update
 ```
 <p align="center">
   <img src="https://user-images.githubusercontent.com/28925814/61175010-022b2380-a5c6-11e9-9fb2-711c41232850.jpg?raw=true" alt="Maven"/>

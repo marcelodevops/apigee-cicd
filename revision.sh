@@ -1,6 +1,6 @@
 #!/bin/bash
 
-revision_info=$(curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/marcelodevopsgarcia-eval/apis/HR-API/deployments") 
+revision_info=$(curl -H "Authorization: Basic $base64encoded" "https://api.enterprise.apigee.com/v1/organizations/marcelodevopsgarcia-eval/apis/hr-api/deployments") 
 
 previous_revision_number=$(jq -r .environment[0].revision[0].name <<< "${revision_info}" ) 
 

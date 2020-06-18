@@ -8,9 +8,9 @@
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>Apigee</groupId>
-	<artifactId>HR-API</artifactId>
+	<artifactId>hr-api</artifactId>
 	<version>1.0</version>
-	<name>HR-API</name>
+	<name>hr-api</name>
 	<packaging>pom</packaging>
 </project>
 

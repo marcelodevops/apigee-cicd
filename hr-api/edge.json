@@ -63,7 +63,7 @@
                     "prod"
                 ],
                 "proxies": [
-                    "HR-API",
+                    "hr-api",
                     "CiCd-Security"
                 ],
                 "quota": "100000000",
@@ -93,7 +93,7 @@
         }
     },
     "apiConfig": {
-        "HR-API": {
+        "hr-api": {
             "maskconfigs": [
                {
                   "jSONPathsRequest": [

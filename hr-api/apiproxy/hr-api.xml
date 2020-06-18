@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<APIProxy revision="15" name="HR-API">
+<APIProxy revision="15" name="hr-api">
     <Basepaths>/hr</Basepaths>
     <ConfigurationVersion majorVersion="4" minorVersion="0"/>
     <CreatedAt>1562271590046</CreatedAt>
