@@ -64,7 +64,7 @@ pipeline
                  // deploy only proxy and deploy both proxy and config based on edge.js update
                 //sh "sh && sh deploy.sh"
                 /* groovylint-disable-next-line LineLength */
-                sh "mvn -f hr-api/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
+                sh "mvn -f hr-api/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update -Dorg=${apigeeOrg}"
             }
         }
         stage('Integration Tests') {
