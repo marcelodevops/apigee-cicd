@@ -63,23 +63,27 @@ pipeline
 
                  // deploy only proxy and deploy both proxy and config based on edge.js update
                 //sh "sh && sh deploy.sh"
+                /* groovylint-disable-next-line LineLength */
                 sh "mvn -f hr-api/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dapigee.config.options=update"
             }
         }
         stage('Integration Tests') {
             steps {
                 script {
+                    /* groovylint-disable-next-line NestedBlockDepth */
                     try {
                         // using credentials.sh to get the client_id and secret of the app..
                         // thought of using them in cucumber oauth feature
                         // sh "sh && sh credentials.sh"
                         sh "cd $WORKSPACE/test/integration && npm install"
                         sh "cd $WORKSPACE/test/integration && npm test"
+                    /* groovylint-disable-next-line NestedBlockDepth */
                     } catch (e) {
-                        //if tests fail, I have used an shell script which has 3 APIs to undeploy, 
+                        //if tests fail, I have used an shell script which has 3 APIs to undeploy,
                         //delete current revision & deploy previous stable revision
-                        sh "sh && sh undeploy.sh"
+                        sh 'sh && sh undeploy.sh'
                         throw e
+                    /* groovylint-disable-next-line NestedBlockDepth */
                     } finally {
                         // generate cucumber reports in both Test Pass/Fail scenario
                         sh "cd $WORKSPACE/test/integration && cp reports.json $WORKSPACE"
