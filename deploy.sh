@@ -18,4 +18,4 @@ fi
 # Redirect output from this script to an "edge.properties" file in Jenkins. 
 echo EdgeConfigOptions=$EdgeConfigOptions
 
-mvn -f hr-api/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dorg=${apigeeOrg} -Dapigee.config.options=$EdgeConfigOptions
+mvn -e -f hr-api/pom.xml install -Pprod -Dusername=${apigeeUsername} -Dpassword=${apigeePassword} -Dorg=${apigeeOrg} -Dapigee.config.options=$EdgeConfigOptions
